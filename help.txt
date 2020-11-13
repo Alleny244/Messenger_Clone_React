@@ -1,0 +1,171 @@
+firebase 
+databse webhosting
+create project 
+check defaults
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/8.0.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/8.0.1/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+
+for hosting
+npm install -g firebase-tools
+
+You can deploy now or later. To deploy now, open a terminal window, then navigate to or create a root directory for your web app.
+
+Sign in to Google
+
+firebase login
+Initiate your project
+Run this command from your app’s root directory:
+
+
+firebase init
+When you’re ready, deploy your web app
+Put your static files (e.g., HTML, CSS, JS) in your app’s deploy directory (the default is “public”). Then, run this command from your app’s root directory:
+
+
+firebase deploy
+{
+  "rules": {
+    ".read": "now < 1607797800000",  // 2020-12-13
+    ".write": "now < 1607797800000",  // 2020-12-13
+  }
+}
+
+
+first step within app cli
+npm install firebase
+create firebase.js file
+import firebase from "firebase";
+const firebaseapp=firebase.initializeApp({
+copy from web browser
+apiKey: "AIzaSyAA0uO5BkUu8qXoDjIWlCU9vCQGMSs6DnM",       //create data from fire baese
+    authDomain: "clone-9dcec.firebaseapp.com",
+    databaseURL: "https://clone-9dcec.firebaseio.com",
+    projectId: "clone-9dcec",
+    storageBucket: "clone-9dcec.appspot.com",
+    messagingSenderId: "388838508161",
+    appId: "1:388838508161:web:a4663e73181300c5ae6f80",
+    measurementId: "G-PT5XZEZHRN" });
+const db=firebase.firestore();
+export {db}
+
+
+then in app.js
+to reterive database from firebox
+useEffect(()=>{
+  db.collection('messages').orderBy('timestamp','desc').onSnapshot(snapshot=>{
+    setMessage(snapshot.docs.map(doc=>{
+      return doc.data()}))
+  })
+},[])      //here messages is the name of collection
+           it retrieves the whole database
+
+
+to use timestamp                            //
+ const storeInput= event=>{
+    event.preventDefault();
+    db.collection('messages').add({
+      username:username,
+      text:input,
+      timestamp:firebase.firestore.FieldValue.serverTimestamp()
+    })
+  
+    setInput('');
+  }
+
+
+
+
+
+
+material ui for front end   https://material-ui.com/
+installation
+npm install @material-ui/core
+if you want to style button change button tage to <Button>
+import React from 'react';
+import { Button } from '@material-ui/core';
+
+function App() {
+  return <Button color="primary">Hello World</Button>;
+}
+
+
+if we are typing in empty string and press enter it will be pushed to list 
+to prevevnt it in buttton tag add disabled={!input}
+
+react flip move
+npm i -S react-flip-move
+Usage with Functional Components
+Functional components do not have a ref, which is needed by Flip Move to work. To make it work you need to wrap your functional component into React.forwardRef and pass it down to the first element which accepts refs, such as DOM elements or class components:
+
+import React, { forwardRef } from 'react';
+import FlipMove from 'react-flip-move';
+
+const FunctionalArticle = forwardRef((props, ref) => (
+  <div ref={ref}>
+    {props.articleName}
+  </div>
+));
+
+// you do not have to modify the parent component
+// this will stay as described in the quickstart
+const TopArticles = ({ articles }) => (
+  <FlipMove>
+    {articles.map(article => (
+      <FunctionalArticle key={article.id} {...article} />
+    ))}
+  </FlipMove>
+);
+messgaelist.js
+const MessageList =forwardRef(({message,username},ref) => {
+       
+    const isUser=username===message.username;
+    return (<div ref={ref} className={`nonuser ${isUser && `user`}`}>
+ <Card className={isUser?"userCard":"nonUserCard"
+}>
+
+
+in app.js
+import FlipMove from 'react-flip-move';
+    <FlipMove>
+     {
+  messages.map(m=>{
+    return<MessageList message={m} username={username}/>
+  })
+}
+     </FlipMove>
+
+
+
+
+npm install @material-ui/icons
+import SendIcon from '@material-ui/icons/Send';
+import { IconButton } from '@material-ui/core';  //treat icon as button
+
+
+ {!isUser &&  `${message.username} :`}  {message.text}
+
+
+text
+"helo"
+timestamp
+November 13, 2020 at 5:24:45 PM UTC+5:30
+username
+"na
+
+deployment
+sudo npm install -g firebase-tools
+firebase login
+firebase init
+npm run build
+firebase deploy
+What do you want to use as your public directory? (public)build
+
+Project Console: https://console.firebase.google.com/project/clone-9dcec/overview
+Hosting URL: https://clone-9dcec.web.app

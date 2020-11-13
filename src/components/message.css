@@ -1,0 +1,42 @@
+.nonuser {
+  padding: 10px;
+  margin: 10px;
+  width: fit-content;
+}
+.user {
+  margin-left: auto;
+  color: white;
+  text-align: right !important;
+}
+.userCard {
+  background-color: blue !important;
+}
+.nonUserCard {
+  background-color: white !important;
+}
+.mt {
+  margin-top: 10px;
+}
+#as {
+  font-size: 25px;
+}
+.aform {
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  background-color: #e9e9eb;
+  display: flex;
+  width: 100%;
+  margin: 20px;
+}
+.formc {
+  display: flex !important;
+  flex-direction: row !important;
+}
+.sendbutton {
+  flex: 0 !important;
+}
+.inputt {
+  flex: 1 !important;
+}
